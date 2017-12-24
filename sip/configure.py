@@ -6,8 +6,8 @@ from PyQt5 import QtCore
 #sip_inc_dir = "/usr/local/share/sip/PyQt5"
 #qt_inc_dir = "/opt/Qt5.9.1/5.9.1/gcc_64/include"
 home_dir = os.path.expanduser('~')
-sip_inc_dir = home_dir + "/local/share/sip/PyQt5"
-qt_inc_dir = home_dir + "/local/Qt5.9.1/5.9.1/gcc_64/include"
+sip_inc_dir = "/Volumes/D/projects/python/DOWNLOAD/PyQt5_gpl-5.9.2/sip"
+qt_inc_dir = "/usr/local/Qt-5.9.2/lib"
 
 target_dir = os.getcwd() + "/../src"
 
@@ -30,10 +30,10 @@ makefile = sipconfig.SIPModuleMakefile(config, build_file)
 # Add the library we are wrapping.  The name doesn't include any platform
 # specific prefixes or extensions (e.g. the "lib" prefix on UNIX, or the
 # ".dll" extension on Windows).
-extraFlags = "-std=c++11 -I%s -I%s/QtCore -I%s/QtGui" % (qt_inc_dir, qt_inc_dir, qt_inc_dir)
+extraFlags = "-std=c++11  -I%s/QtCore.framework/Headers -I%s/QtGui.framework/Headers -F%s" % (qt_inc_dir, qt_inc_dir, qt_inc_dir) 
 makefile.extra_cflags = [extraFlags]
 makefile.extra_cxxflags = [extraFlags]
-makefile.extra_lflags = ["-Wl,-R" + target_dir]
+#makefile.extra_lflags = ["-Wl,-R" + target_dir]
 makefile.extra_lib_dirs = [target_dir]
 makefile.extra_libs = ["hello"]
 
